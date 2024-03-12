@@ -16,10 +16,10 @@ export default function Footer({}: Props) {
           </div>
           <div>
             <span className={cn(noto_serif.className, 'font-normal')}>
-              "Fashion is part of the daily air and it changes all the time,
-              with all the events. You can even see the approaching of a
+              &quot;Fashion is part of the daily air and it changes all the
+              time, with all the events. You can even see the approaching of a
               revolution in clothes. You can see and feel everything in
-              clothes."
+              clothes.&quot;
             </span>
             <br /> — Diana Vreeland
           </div>
@@ -48,10 +48,11 @@ export default function Footer({}: Props) {
               'Help & Advices',
               'Refund Policy',
             ].map((e, i) => (
-              <li className="mb-2 text-sm font-normal hover:text-indigo-700">
-                <Link href="#" key={i}>
-                  {e}
-                </Link>
+              <li
+                className="mb-2 text-sm font-normal hover:text-indigo-700"
+                key={i}
+              >
+                <Link href="#">{e}</Link>
               </li>
             ))}
           </ul>
@@ -69,10 +70,11 @@ export default function Footer({}: Props) {
               'Plus Size Clothing',
               'Footwear',
             ].map((e, i) => (
-              <li className="mb-2 text-sm font-normal hover:text-indigo-700">
-                <Link href="#" key={i}>
-                  {e}
-                </Link>
+              <li
+                className="mb-2 text-sm font-normal hover:text-indigo-700"
+                key={i}
+              >
+                <Link href="#">{e}</Link>
               </li>
             ))}
           </ul>
@@ -81,10 +83,11 @@ export default function Footer({}: Props) {
           <div className="mb-4 text-xl font-semibold">Contact Us</div>
           <ul>
             {['shopsphere@randommail.com', '+91 98765 43210'].map((e, i) => (
-              <li className="mb-2 text-sm font-normal hover:text-indigo-700">
-                <Link href="#" key={i}>
-                  {e}
-                </Link>
+              <li
+                className="mb-2 text-sm font-normal hover:text-indigo-700"
+                key={i}
+              >
+                <Link href="#">{e}</Link>
               </li>
             ))}
           </ul>
