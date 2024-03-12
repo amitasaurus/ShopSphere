@@ -11,35 +11,37 @@ type Props = {
 
 export default function Header({ className }: Props) {
   return (
-    <div className={cn(className, 'py-4 border-b border-primary')}>
-      <div className="flex items-center pb-2">
-        <div className="text-base font-light">
-          Shop<span className="font-semibold">Sphere</span>
-        </div>
+    <div className={cn(className, 'pt-2 pb-4 border-b border-primary')}>
+      <div className="flex items-center">
+        <Link href="/">
+          <div className="text-base font-light">
+            Shop<span className="font-semibold">Sphere</span>
+          </div>
+        </Link>
 
         <div className="mx-auto">
           <input
             type="text"
             placeholder="Search"
-            className="bg-primary border-0 focus:ring-0 rounded-md text-sm w-64"
+            className="w-64 text-sm border-0 rounded-md bg-primary focus:ring-0"
           />
         </div>
 
         <div className="flex items-center">
           <Button
-            className="hover:text-accent"
+            className=" hover:bg-accent/10"
             text="Cart"
             variant={EVariants.iconButtonWithText}
             icon={<FiShoppingCart size={16} />}
           />
           <Button
-            className="mx-6 hover:text-accent"
+            className="mx-6 hover:bg-accent/10"
             variant={EVariants.iconButtonWithText}
             text="Favourites"
             icon={<FiHeart size={16} />}
           />
           <Button
-            className="hover:text-accent"
+            className="p-2 rounded-md hover:bg-accent/10"
             text="Login"
             variant={EVariants.iconButtonWithText}
             icon={<FiLogIn size={16} />}

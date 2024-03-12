@@ -19,16 +19,31 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 
 function IconButtonWithText({ className, icon, text }: ButtonProps) {
   return (
-    <button className={cn('flex flex-col items-center', className)}>
+    <button
+      className={cn('flex flex-col items-center p-2 rounded-md', className)}
+    >
       <div>{icon}</div>
-      <div className="text-xs font-semibold mt-1">{text}</div>
+      <div className="mt-1 text-xs font-semibold">{text}</div>
     </button>
   );
 }
 function Text({ className, text }: ButtonProps) {
   return (
-    <button className={cn('flex flex-col items-center', className)}>
-      <div className="text-sm font-semibold mt-1">{text}</div>
+    <button className={cn(className)}>
+      <div className="mt-1 text-sm font-semibold">{text}</div>
+    </button>
+  );
+}
+
+function GhostButton({ className, text }: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        className,
+        'border border-secondary text-secondary rounded px-4 py-2'
+      )}
+    >
+      <div className="text-sm font-semibold">{text}</div>
     </button>
   );
 }
@@ -45,6 +60,9 @@ export default function Button({
         <IconButtonWithText className={className} icon={icon} text={text} />
       )}
       {variant === EVariants.text && <Text className={className} text={text} />}
+      {variant === EVariants.ghost && (
+        <GhostButton className={className} text={text} />
+      )}
     </>
   );
 }

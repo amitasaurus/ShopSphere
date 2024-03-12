@@ -1,31 +1,31 @@
 export const nav_links: Array<TNavLinks> = [
   {
     title: 'Women',
-    url: 'women',
+    url: '/shop/women',
   },
   {
     title: 'Men',
-    url: 'men',
+    url: '/shop/men',
   },
   {
     title: 'Kids',
-    url: 'kids',
+    url: '/shop/kids',
   },
   {
     title: 'Sports',
-    url: 'sports',
+    url: '/shop/sports',
   },
   {
     title: 'Brands',
-    url: 'brands',
+    url: '/shop/brands',
   },
   {
     title: 'New',
-    url: 'new',
+    url: '/shop/new',
   },
   {
     title: 'Sale',
-    url: 'sale',
+    url: '/shop/sale',
     highlight: true,
   },
 ];
