@@ -2,14 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import cn from '@/utils/cn';
 import Link from 'next/link';
-import { Noto_Serif_Display } from 'next/font/google';
 import Button, { EVariants } from './Button';
-
-const noto_serif = Noto_Serif_Display({
-  subsets: ['latin'],
-  weight: ['500'],
-  style: ['italic'],
-});
+import { noto_serif } from '@/utils/fonts';
 
 export enum ImgPos {
   Top = 'object-top',
@@ -45,15 +39,18 @@ export default function Banner({
         src={imageUrl}
         alt="temp"
         width={1280}
-        height={height ?? 512}
+        height={height}
+        priority
         className={cn('w-full rounded-lg object-cover', imagePos)}
         style={{
           height: `${height}px`,
         }}
       />
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10">
-        <div className={cn(noto_serif.className, 'text-8xl')}>{title}</div>
-        <div className="text-2xl font-light mt-6">{subtitle}</div>
+      <div className="absolute z-10 -translate-y-1/2 left-8 top-1/2">
+        <div className={cn(noto_serif.className, 'text-8xl font-medium')}>
+          {title}
+        </div>
+        <div className="mt-6 text-2xl font-light">{subtitle}</div>
         <Link href={redirectTo}>
           <Button
             text="Check It Out"

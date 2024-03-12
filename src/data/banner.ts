@@ -1,5 +1,5 @@
 export const banner_data: TBanner = {
-  imageUrl: '/banner-1.jpg',
+  imageUrl: '/banner.jpg',
   height: 512,
   imagePos: 'object-center',
   title: 'Spring Sale',
