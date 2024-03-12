@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiShoppingCart, FiHeart, FiLogIn } from 'react-icons/fi';
-import Button, { EVariants } from './Button';
+import Button, { EVariants, EAlignment } from './Button';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 import { TNavLinks, nav_links } from '@/data/nav';
@@ -33,18 +33,21 @@ export default function Header({ className }: Props) {
             text="Cart"
             variant={EVariants.iconButtonWithText}
             icon={<FiShoppingCart size={16} />}
+            alignment={EAlignment.vertical}
           />
           <Button
             className="mx-6 hover:bg-accent/10"
             variant={EVariants.iconButtonWithText}
             text="Favourites"
             icon={<FiHeart size={16} />}
+            alignment={EAlignment.vertical}
           />
           <Button
             className="p-2 rounded-md hover:bg-accent/10"
             text="Login"
             variant={EVariants.iconButtonWithText}
             icon={<FiLogIn size={16} />}
+            alignment={EAlignment.vertical}
           />
         </div>
       </div>

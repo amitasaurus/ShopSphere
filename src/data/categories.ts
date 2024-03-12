@@ -35,3 +35,9 @@ export type Tcategory = {
   subtitle: string;
   categories: Tcategories[];
 };
+export enum ECategory {
+  Women = 'Women',
+  Men = 'Men',
+  Kids = 'Kids',
+  Sports = 'Sports',
+}

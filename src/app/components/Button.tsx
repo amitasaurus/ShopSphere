@@ -15,15 +15,52 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   text?: string;
   icon?: React.ReactNode;
   className?: string;
+  alignment?: EAlignment;
 }
 
-function IconButtonWithText({ className, icon, text }: ButtonProps) {
+export enum EAlignment {
+  'vertical',
+  'horizontal',
+}
+
+function IconButton({ className, icon }: ButtonProps) {
   return (
     <button
-      className={cn('flex flex-col items-center p-2 rounded-md', className)}
+      className={cn(
+        'flex items-center justify-center p-2 rounded-full',
+        className
+      )}
     >
-      <div>{icon}</div>
-      <div className="mt-1 text-xs font-semibold">{text}</div>
+      {icon}
+    </button>
+  );
+}
+
+function IconButtonWithText({ className, icon, text, alignment }: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        'flex items-center p-2 rounded-md',
+        {
+          'flex-col': alignment === EAlignment.vertical,
+        },
+        className
+      )}
+    >
+      <div
+        className={cn({
+          'mr-2': alignment === EAlignment.horizontal,
+        })}
+      >
+        {icon}
+      </div>
+      <div
+        className={cn('text-xs font-semibold', {
+          'mt-1': alignment === EAlignment.vertical,
+        })}
+      >
+        {text}
+      </div>
     </button>
   );
 }
@@ -53,15 +90,24 @@ export default function Button({
   text,
   icon,
   className,
+  alignment,
 }: ButtonProps) {
   return (
     <>
       {variant === EVariants.iconButtonWithText && (
-        <IconButtonWithText className={className} icon={icon} text={text} />
+        <IconButtonWithText
+          className={className}
+          icon={icon}
+          text={text}
+          alignment={alignment}
+        />
       )}
       {variant === EVariants.text && <Text className={className} text={text} />}
       {variant === EVariants.ghost && (
         <GhostButton className={className} text={text} />
+      )}
+      {variant === EVariants.iconButton && (
+        <IconButton className={className} icon={icon} />
       )}
     </>
   );

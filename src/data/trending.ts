@@ -1,3 +1,4 @@
+import { ECategory } from '@/data/categories';
 export const trending_data: Ttrend = {
   title: 'Trending Products',
   subtitle: `The Products Everyone's Talking About`,
@@ -8,6 +9,7 @@ export const trending_data: Ttrend = {
       image_url: '/cotton-crewneck-t-shirt.jpg',
       price: 24.99,
       currency: '$',
+      category: ECategory.Men,
     },
     {
       title: 'Slim-Fit Chinos',
@@ -15,6 +17,7 @@ export const trending_data: Ttrend = {
       image_url: '/slim-fit-chinos.jpg',
       price: 39.99,
       currency: '$',
+      category: ECategory.Men,
     },
     {
       title: 'Floral Print Maxi Dress',
@@ -22,6 +25,7 @@ export const trending_data: Ttrend = {
       image_url: '/floral-print-maxi-dress.jpg',
       price: 59.99,
       currency: '$',
+      category: ECategory.Women,
     },
     {
       title: 'Leather Tote Bag',
@@ -29,6 +33,7 @@ export const trending_data: Ttrend = {
       image_url: '/leather-tote-bag.jpg',
       price: 149.99,
       currency: '$',
+      category: ECategory.Women,
     },
     {
       title: 'Running Shoes',
@@ -36,6 +41,7 @@ export const trending_data: Ttrend = {
       image_url: '/running-shoes.jpg',
       price: 99.99,
       currency: '$',
+      category: ECategory.Sports,
     },
     {
       title: 'Yoga Pants',
@@ -43,6 +49,7 @@ export const trending_data: Ttrend = {
       image_url: '/yoga-pants.jpg',
       price: 44.99,
       currency: '$',
+      category: ECategory.Sports,
     },
     {
       title: 'Graphic Tee',
@@ -50,6 +57,7 @@ export const trending_data: Ttrend = {
       image_url: '/graphic-tee.jpg',
       price: 19.99,
       currency: '$',
+      category: ECategory.Women,
     },
     {
       title: 'Denim Shorts',
@@ -57,6 +65,7 @@ export const trending_data: Ttrend = {
       image_url: '/denim-shorts.jpg',
       price: 29.99,
       currency: '$',
+      category: ECategory.Women,
     },
   ],
 };
@@ -66,6 +75,7 @@ export type TProduct = {
   image_url: string;
   price: number;
   currency: string;
+  category: ECategory;
 };
 export type Ttrend = {
   title: string;
