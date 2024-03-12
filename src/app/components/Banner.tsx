@@ -55,7 +55,7 @@ export default function Banner({
           <Button
             text="Check It Out"
             variant={EVariants.ghost}
-            className="mt-6"
+            className="mt-6 hover:text-white hover:bg-secondary"
           />
         </Link>
       </div>

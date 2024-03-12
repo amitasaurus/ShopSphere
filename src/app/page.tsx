@@ -8,6 +8,7 @@ import cn from '@/utils/cn';
 import { noto_serif } from '@/utils/fonts';
 import Link from 'next/link';
 import Slider from './components/Slider';
+import Features from './components/Features';
 
 export default function Home() {
   return (
@@ -34,8 +35,8 @@ export default function Home() {
           {category_data.subtitle}
         </div>
         <div className="flex justify-between mt-12">
-          {category_data.categories.map((cat) => (
-            <Link href={cat.url}>
+          {category_data.categories.map((cat, i) => (
+            <Link href={cat.url} key={i}>
               <CategoryCard image_url={cat.image_url} title={cat.title} />
             </Link>
           ))}
@@ -57,6 +58,10 @@ export default function Home() {
         <div className="flex justify-between mt-12">
           <Slider slides={trending_data.products} />
         </div>
+      </div>
+      {/* Features */}
+      <div className="pt-12">
+        <Features />
       </div>
     </main>
   );

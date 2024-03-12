@@ -29,21 +29,21 @@ export default function Header({ className }: Props) {
 
         <div className="flex items-center">
           <Button
-            className=" hover:bg-accent/10"
+            className=" hover:bg-primary"
             text="Cart"
             variant={EVariants.iconButtonWithText}
             icon={<FiShoppingCart size={16} />}
             alignment={EAlignment.vertical}
           />
           <Button
-            className="mx-6 hover:bg-accent/10"
+            className="mx-6 hover:bg-primary"
             variant={EVariants.iconButtonWithText}
             text="Favourites"
             icon={<FiHeart size={16} />}
             alignment={EAlignment.vertical}
           />
           <Button
-            className="p-2 rounded-md hover:bg-accent/10"
+            className="p-2 rounded-md hover:bg-primary"
             text="Login"
             variant={EVariants.iconButtonWithText}
             icon={<FiLogIn size={16} />}
@@ -52,8 +52,8 @@ export default function Header({ className }: Props) {
         </div>
       </div>
       <div className="flex items-center">
-        {nav_links.map((link) => (
-          <Link href={link.url}>
+        {nav_links.map((link, i) => (
+          <Link href={link.url} key={i}>
             <Button
               variant={EVariants.text}
               text={link.title}

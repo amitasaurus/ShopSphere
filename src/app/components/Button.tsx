@@ -76,8 +76,8 @@ function GhostButton({ className, text }: ButtonProps) {
   return (
     <button
       className={cn(
-        className,
-        'border border-secondary text-secondary rounded px-4 py-2'
+        'border border-secondary text-secondary rounded px-4 py-2',
+        className
       )}
     >
       <div className="text-sm font-semibold">{text}</div>
