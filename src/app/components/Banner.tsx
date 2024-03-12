@@ -32,7 +32,7 @@ type Props = {
   redirectTo: string;
 };
 export default function Banner({
-  height,
+  height = 512,
   imageUrl,
   imagePos = ImgPos.Center,
   title,
@@ -46,11 +46,10 @@ export default function Banner({
         alt="temp"
         width={1280}
         height={height ?? 512}
-        className={cn(
-          'w-full rounded-lg object-cover',
-          `h-[${height ?? 512}px]`,
-          imagePos
-        )}
+        className={cn('w-full rounded-lg object-cover', imagePos)}
+        style={{
+          height: `${height}px`,
+        }}
       />
       <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10">
         <div className={cn(noto_serif.className, 'text-8xl')}>{title}</div>

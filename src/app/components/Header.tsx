@@ -55,7 +55,7 @@ export default function Header({ className }: Props) {
               variant={EVariants.text}
               text={link.title}
               className={cn('hover:text-accent mx-4 first:ml-0', {
-                'text-danger': link.highlight,
+                'text-red-500': link.highlight,
               })}
             />
           </Link>
