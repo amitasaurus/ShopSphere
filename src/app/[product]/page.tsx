@@ -4,6 +4,7 @@ import { product_data } from '@/data/product';
 import { FiStar } from 'react-icons/fi';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Variants from '../components/Variants';
+import Sizes from '../components/Sizes';
 
 export default function Page({ params }: { params: { product: string } }) {
   console.log(params.product);
@@ -17,7 +18,7 @@ export default function Page({ params }: { params: { product: string } }) {
         <ProductGallery {...product_data} />
       </div>
       <div className="col-span-6">
-        <div className="flex justify-between">
+        <div className="flex items-center">
           <div className="flex items-center">
             <div className="mr-2 rounded-full">
               <Image
@@ -32,6 +33,7 @@ export default function Page({ params }: { params: { product: string } }) {
               {product_data.brand.name}
             </div>
           </div>
+          <span className="mx-2 text-slate-500 font-2xl">&#183;</span>
           <div className="text-xs font-medium text-slate-500">
             {product_data.id}
           </div>
@@ -41,6 +43,7 @@ export default function Page({ params }: { params: { product: string } }) {
           <div className="flex items-center">
             {new Array(5).fill(1).map((e, i) => (
               <FiStar
+                key={i}
                 className="mr-1 last:mr-0"
                 fill={i < product_data.rating ? 'rgb(237, 207, 93)' : '#f3f5f8'}
                 stroke={
@@ -59,8 +62,9 @@ export default function Page({ params }: { params: { product: string } }) {
           </div>
           <div className="text-6xl font-semibold">{product_data.price}</div>
         </div>
-        <div>
-          <Variants data={product_data.variants} />
+        <Variants data={product_data.variants} />
+        <div className="my-8">
+          <Sizes data={product_data.sizes} />
         </div>
       </div>
     </div>

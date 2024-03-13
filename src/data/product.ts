@@ -44,6 +44,7 @@ export const product_data: TProduct = {
       },
     ],
   },
+  sizes: ['small', 'medium', 'large', 'xl', 'xxl', 'xxxl'],
 };
 export type TProduct = {
   id: string;
@@ -67,4 +68,5 @@ export type TProduct = {
       image: string;
     }>;
   };
+  sizes: Array<number | string>;
 };

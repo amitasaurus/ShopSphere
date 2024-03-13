@@ -23,9 +23,10 @@ export enum EAlignment {
   'horizontal',
 }
 
-function IconButton({ className, icon }: ButtonProps) {
+function IconButton({ className, icon, ...props }: ButtonProps) {
   return (
     <button
+      {...props}
       className={cn(
         'flex items-center justify-center p-2 rounded-full',
         className
@@ -36,9 +37,16 @@ function IconButton({ className, icon }: ButtonProps) {
   );
 }
 
-function IconButtonWithText({ className, icon, text, alignment }: ButtonProps) {
+function IconButtonWithText({
+  className,
+  icon,
+  text,
+  alignment,
+  ...props
+}: ButtonProps) {
   return (
     <button
+      {...props}
       className={cn(
         'flex items-center p-2 rounded-md',
         {
@@ -64,17 +72,32 @@ function IconButtonWithText({ className, icon, text, alignment }: ButtonProps) {
     </button>
   );
 }
-function Text({ className, text }: ButtonProps) {
+function Text({ className, text, ...props }: ButtonProps) {
   return (
-    <button className={cn(className)}>
+    <button className={cn(className)} {...props}>
       <div className="mt-1 text-sm font-semibold">{text}</div>
     </button>
   );
 }
 
-function GhostButton({ className, text }: ButtonProps) {
+function Outlined({ className, text, ...props }: ButtonProps) {
   return (
     <button
+      {...props}
+      className={cn(
+        'bg-primary border border-primary hover:border-secondary hover:bg-secondary hover:text-white p-2 rounded-md text-secondary text-xs font-semibold uppercase',
+        className
+      )}
+    >
+      {text}
+    </button>
+  );
+}
+
+function GhostButton({ className, text, ...props }: ButtonProps) {
+  return (
+    <button
+      {...props}
       className={cn(
         'border border-secondary text-secondary rounded px-4 py-2',
         className
@@ -91,6 +114,7 @@ export default function Button({
   icon,
   className,
   alignment,
+  ...props
 }: ButtonProps) {
   return (
     <>
@@ -100,14 +124,20 @@ export default function Button({
           icon={icon}
           text={text}
           alignment={alignment}
+          {...props}
         />
       )}
-      {variant === EVariants.text && <Text className={className} text={text} />}
+      {variant === EVariants.text && (
+        <Text className={className} text={text} {...props} />
+      )}
       {variant === EVariants.ghost && (
-        <GhostButton className={className} text={text} />
+        <GhostButton className={className} text={text} {...props} />
       )}
       {variant === EVariants.iconButton && (
-        <IconButton className={className} icon={icon} />
+        <IconButton className={className} icon={icon} {...props} />
+      )}
+      {variant === EVariants.outlined && (
+        <Outlined className={className} text={text} {...props} />
       )}
     </>
   );

@@ -28,6 +28,7 @@ export default function ProductGallery({
   function clearSearchParams() {
     const params = new URLSearchParams();
     params.delete('variant');
+    params.delete('size');
     replace(`${pathname}?${params.toString()}`);
   }
 
@@ -44,6 +45,7 @@ export default function ProductGallery({
         height={512}
         className="w-[512px] h-[512px] rounded-lg object-cover object-top"
         alt={title}
+        priority
       />
       <div className="flex items-center mt-2">
         {gallery.map((img, i) => (
