@@ -8,7 +8,7 @@ type Props = {};
 
 export default function Footer({}: Props) {
   return (
-    <div className="px-4">
+    <div className="px-4 pb-4">
       <div className="grid w-full grid-cols-6 px-4 py-8 overflow-hidden rounded-lg bg-primary">
         <div className="col-span-3 p-4">
           <div className="mb-4 text-base font-light">
