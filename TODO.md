@@ -12,3 +12,6 @@
   - [] Build Suggested Products Section
 - [] Build Category Page
 - [] Build Cart
+- ✅ Build Sanity Schema
+- [] Add data to Sanity
+- [] Consume data from Sanity

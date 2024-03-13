@@ -8,7 +8,6 @@ import Sizes from '../components/Sizes';
 import Button, { EAlignment, EVariants } from '../components/Button';
 
 export default function Page({ params }: { params: { product: string } }) {
-  console.log(params.product);
   return (
     <div className="grid w-full min-h-screen grid-cols-12 p-4">
       <div className="col-span-6">

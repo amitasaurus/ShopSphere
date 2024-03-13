@@ -1,7 +1,4 @@
-import Image from 'next/image';
-import Banner, { ImgPos } from './components/Banner';
-import { banner_data } from '@/data/banner';
-import { category_data } from '@/data/categories';
+import Banner from './components/Banner';
 import { trending_data } from '@/data/trending';
 import CategoryCard from './components/CategoryCard';
 import cn from '@/utils/cn';
@@ -9,14 +6,21 @@ import { noto_serif } from '@/utils/fonts';
 import Link from 'next/link';
 import Slider from './components/Slider';
 import Features from './components/Features';
+import client from '../../client';
+import type { Banner as TBanner, Category } from '@/types/index';
+import { bannerQuery, categoriesQuery } from '@/queries/landing';
+import { urlFor } from '@/utils/sanity';
 
-export default function Home() {
+export default async function Home() {
+  const banner = await client.fetch<TBanner[]>(bannerQuery);
+  const categories = await client.fetch<Category[]>(categoriesQuery);
+  const banner_data = banner[0];
+  const category_data = categories[0];
+
   return (
     <main className="p-4">
       <Banner
-        imageUrl={banner_data.imageUrl}
-        height={banner_data.height}
-        imagePos={banner_data.imagePos}
+        imageUrl={urlFor(banner_data.image).url()}
         title={banner_data.title}
         subtitle={banner_data.subtitle}
         redirectTo={banner_data.redirectTo}
@@ -37,7 +41,10 @@ export default function Home() {
         <div className="flex justify-between mt-12">
           {category_data.categories.map((cat, i) => (
             <Link href={cat.url} key={i}>
-              <CategoryCard image_url={cat.image_url} title={cat.title} />
+              <CategoryCard
+                image_url={urlFor(cat.image).url()}
+                title={cat.title}
+              />
             </Link>
           ))}
         </div>

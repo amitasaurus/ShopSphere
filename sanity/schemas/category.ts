@@ -47,7 +47,7 @@ export const homeCategory = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'category',
+      name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [
