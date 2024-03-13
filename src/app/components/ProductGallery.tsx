@@ -41,9 +41,9 @@ export default function ProductGallery({
     <div>
       <Image
         src={selectedImg}
-        width={512}
+        width={592}
         height={512}
-        className="w-[512px] h-[512px] rounded-lg object-cover object-top"
+        className="w-[592px] h-[592px] rounded-lg object-cover object-top"
         alt={title}
         priority
       />
@@ -52,9 +52,9 @@ export default function ProductGallery({
           <Image
             key={i}
             src={img}
-            width={96}
-            height={96}
-            className="w-[96px] h-[96px] rounded-lg object-cover object-top mr-2 last:mr-0 hover:opacity-75 cursor-pointer"
+            width={112}
+            height={112}
+            className="w-28 h-28 rounded-lg object-cover object-top mr-2 last:mr-0 hover:opacity-75 cursor-pointer"
             alt={`${title} gallery image ${i}`}
             onClick={() => updateSelectedImage(img)}
           />

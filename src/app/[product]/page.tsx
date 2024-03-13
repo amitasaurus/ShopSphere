@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import ProductGallery from '../components/ProductGallery';
 import { product_data } from '@/data/product';
-import { FiStar } from 'react-icons/fi';
+import { FiStar, FiShoppingCart, FiHeart, FiTruck } from 'react-icons/fi';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Variants from '../components/Variants';
 import Sizes from '../components/Sizes';
+import Button, { EAlignment, EVariants } from '../components/Button';
 
 export default function Page({ params }: { params: { product: string } }) {
   console.log(params.product);
@@ -65,6 +66,25 @@ export default function Page({ params }: { params: { product: string } }) {
         <Variants data={product_data.variants} />
         <div className="my-8">
           <Sizes data={product_data.sizes} />
+        </div>
+
+        <div className="flex">
+          <Button
+            variant={EVariants.iconButtonWithText}
+            text="Add to cart"
+            icon={<FiShoppingCart size={16} />}
+            alignment={EAlignment.horizontal}
+            className="bg-secondary text-base text-white w-1/2 justify-center py-4 hover:bg-secondary/75"
+          />
+          <Button
+            variant={EVariants.iconButton}
+            icon={<FiHeart size={16} />}
+            className="p-4 bg-primary rounded-lg ml-4 hover:bg-primary/75"
+          />
+        </div>
+        <div className="flex items-center text-sm font-light mt-2">
+          <FiTruck size={12} className="mr-1.5" />
+          Free delivery on orders over $200
         </div>
       </div>
     </div>

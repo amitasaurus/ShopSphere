@@ -20,13 +20,15 @@ export default function ProductCard({
   return (
     <Link href={url}>
       <div className="relative">
-        <Image
-          src={image_url}
-          width={256}
-          height={320}
-          alt={title}
-          className="w-full h-[320px] object-cover object-top rounded-lg"
-        />
+        <div className="rounded-lg overflow-hidden">
+          <Image
+            src={image_url}
+            width={256}
+            height={320}
+            alt={title}
+            className="w-full h-[320px] object-cover object-top hover:scale-105 transition-all"
+          />
+        </div>
         <Button
           className="absolute bg-white shadow-md bottom-4 right-4 hover:bg-secondary hover:text-white"
           text="Cart"

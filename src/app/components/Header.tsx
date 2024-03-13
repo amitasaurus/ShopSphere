@@ -3,7 +3,7 @@ import { FiShoppingCart, FiHeart, FiLogIn } from 'react-icons/fi';
 import Button, { EVariants, EAlignment } from './Button';
 import cn from '@/utils/cn';
 import Link from 'next/link';
-import { TNavLinks, nav_links } from '@/data/nav';
+import { nav_links } from '@/data/nav';
 
 type Props = {
   className?: string;

@@ -43,7 +43,7 @@ export default function Sizes({ data }: Props) {
             key={index}
             variant={EVariants.outlined}
             text={size as string}
-            className={cn('mr-4 last:mr-0', {
+            className={cn('mr-4 last:mr-0 min-w-20', {
               'bg-secondary border-secondary text-white': size === selectedSize,
             })}
             onClick={() => updateSizeSelection(size)}
