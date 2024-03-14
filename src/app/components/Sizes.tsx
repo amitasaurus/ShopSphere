@@ -13,7 +13,7 @@ export default function Sizes({ data }: Props) {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
-  const defaultSize = data[0];
+  const defaultSize = data && data[0];
   const querySize = searchParams.get('size');
   const [selectedSize, setSize] = useState<string | number>(
     querySize ?? defaultSize
@@ -21,6 +21,7 @@ export default function Sizes({ data }: Props) {
   useEffect(() => {
     if (!querySize) setSize(defaultSize);
   }, [querySize, defaultSize]);
+
   if (!(Array.isArray(data) && data.length > 0)) return null;
 
   function updateSizeSelection(size: string | number) {
