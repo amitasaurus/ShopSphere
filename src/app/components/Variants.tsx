@@ -4,27 +4,22 @@ import Breadcrumbs from './Breadcrumbs';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import cn from '@/utils/cn';
+import type { Variant } from '@/types/product';
+import { urlFor } from '@/utils/sanity';
 
 type Props = {
-  data: {
-    title: string;
-    types: Array<VariantType>;
-  };
-};
-
-type VariantType = {
-  name: string;
-  image: string;
+  data: Array<Variant>;
 };
 
 export default function Variants({ data }: Props) {
-  const { title, types } = data;
-  const defaultVariant = types[0];
+  if (!(Array.isArray(data) && data.length > 0)) return null;
+  const title = 'Colors';
+  const defaultVariant = data[0];
   const searchParams = useSearchParams();
   const queryVariant = searchParams.get('variant');
   let queryVariantType;
   if (queryVariant) {
-    queryVariantType = types.find((e) => e.name === queryVariant);
+    queryVariantType = data.find((e) => e.variant === queryVariant);
   }
   const [selectedType, setSelectedType] = useState(
     queryVariantType ?? defaultVariant
@@ -32,13 +27,13 @@ export default function Variants({ data }: Props) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  function updateVariantSelection(type: VariantType) {
+  function updateVariantSelection(type: Variant) {
     setSelectedType(type);
     const params = new URLSearchParams(searchParams);
     if (queryVariant) {
       params.delete('variant');
     }
-    params.append('variant', type.name);
+    params.append('variant', type.variant);
     replace(`${pathname}?${params.toString()}`);
   }
 
@@ -48,19 +43,19 @@ export default function Variants({ data }: Props) {
 
   return (
     <div>
-      <Breadcrumbs data={[title, selectedType.name]} className="text-base" />
+      <Breadcrumbs data={[title, selectedType.title]} className="text-base" />
       <div className="flex items-center mt-4">
-        {types.map((e, i) => (
+        {data.map((e, i) => (
           <Image
             key={i}
-            src={e.image}
-            alt={e.name}
+            src={urlFor(e.primary_image).url()}
+            alt={e.title}
             width={64}
             height={112}
             className={cn(
-              'object-cover object-center w-16 mr-4 rounded-lg cursor-pointer h-28 hover:opacity-75 last:mr-0 border-2 border-transparent',
+              'object-cover w-16 mr-4 rounded-lg cursor-pointer h-28 hover:opacity-75 last:mr-0 border-2 border-transparent',
               {
-                'border-2 border-secondary': e.name === selectedType.name,
+                'border-2 border-secondary': e.variant === selectedType.variant,
               }
             )}
             onClick={() => updateVariantSelection(e)}

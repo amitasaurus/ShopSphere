@@ -10,6 +10,7 @@ type Props = {
 };
 
 export default function Sizes({ data }: Props) {
+  if (!(Array.isArray(data) && data.length > 0)) return null;
   const defaultSize = data[0];
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -36,7 +37,7 @@ export default function Sizes({ data }: Props) {
 
   return (
     <div>
-      <Breadcrumbs data={['Sizes', 'EU Men']} className="text-base" />
+      <Breadcrumbs data={['Sizes', 'EU']} className="text-base" />
       <div className="mt-4">
         {data.map((size, index) => (
           <Button

@@ -1,13 +1,21 @@
 import Image from 'next/image';
 import ProductGallery from '../components/ProductGallery';
-import { product_data } from '@/data/product';
 import { FiStar, FiShoppingCart, FiHeart, FiTruck } from 'react-icons/fi';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Variants from '../components/Variants';
 import Sizes from '../components/Sizes';
 import Button, { EAlignment, EVariants } from '../components/Button';
-
-export default function Page({ params }: { params: { product: string } }) {
+import client from '../../../client';
+import { getProductQuery } from '@/queries/product';
+import { urlFor } from '@/utils/sanity';
+import type { Product } from '@/types/product';
+export default async function Page({
+  params,
+}: {
+  params: { product: string };
+}) {
+  const data = await client.fetch<Product[]>(getProductQuery(params.product));
+  const product_data = data[0];
   return (
     <div className="grid w-full min-h-screen grid-cols-12 p-4">
       <div className="col-span-6">
@@ -15,14 +23,17 @@ export default function Page({ params }: { params: { product: string } }) {
           data={[product_data.category, product_data.url]}
           className="mb-2"
         />
-        <ProductGallery {...product_data} />
+        <ProductGallery
+          image_url={urlFor(product_data.primary_image).url()}
+          {...product_data}
+        />
       </div>
       <div className="col-span-6">
         <div className="flex items-center">
           <div className="flex items-center">
             <div className="mr-2 rounded-full">
               <Image
-                src={product_data.brand.logo}
+                src={urlFor(product_data.brand.logo).url()}
                 width={32}
                 height={32}
                 className="w-8 h-8"
@@ -35,7 +46,7 @@ export default function Page({ params }: { params: { product: string } }) {
           </div>
           <span className="mx-2 text-slate-500 font-2xl">&#183;</span>
           <div className="text-xs font-medium text-slate-500">
-            {product_data.id}
+            {product_data.gtin}
           </div>
         </div>
         <div className="my-4 text-3xl font-semibold">{product_data.title}</div>

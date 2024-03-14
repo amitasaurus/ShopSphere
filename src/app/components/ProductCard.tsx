@@ -28,7 +28,7 @@ export default function ProductCard({
             width={256}
             height={320}
             alt={title}
-            className="w-full h-[320px] object-cover object-top hover:scale-105 transition-all"
+            className="w-full h-[320px] object-cover hover:scale-105 transition-all"
           />
         </div>
         <Button

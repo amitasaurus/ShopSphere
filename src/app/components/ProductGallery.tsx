@@ -1,10 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { TProduct } from '@/data/product';
+import type { Product } from '@/types/product';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { urlFor } from '@/utils/sanity';
 
-interface Props extends TProduct {}
+interface Props extends Product {
+  image_url: string;
+}
 
 export default function ProductGallery({
   image_url,
@@ -17,12 +20,13 @@ export default function ProductGallery({
   const search = searchParams.get('variant');
   const pathname = usePathname();
   const { replace } = useRouter();
-  const variantsTypes = variants.types;
+  const variantsTypes = variants;
 
   useEffect(() => {
-    if (search) {
-      const selectedVariant = variantsTypes.find((e) => e.name === search);
-      if (selectedVariant) setSelectedImg(selectedVariant?.image);
+    if (search && Array.isArray(variantsTypes)) {
+      const selectedVariant = variantsTypes.find((e) => e.variant === search);
+      if (selectedVariant)
+        setSelectedImg(urlFor(selectedVariant?.primary_image).url());
     }
   }, [search, variantsTypes]);
 
@@ -44,23 +48,25 @@ export default function ProductGallery({
         src={selectedImg}
         width={592}
         height={512}
-        className="w-[592px] h-[592px] rounded-lg object-cover object-top"
+        className="w-[592px] h-[592px] rounded-lg object-cover"
         alt={title}
         priority
       />
-      <div className="flex items-center mt-2">
-        {gallery.map((img, i) => (
-          <Image
-            key={i}
-            src={img}
-            width={112}
-            height={112}
-            className="w-28 h-28 rounded-lg object-cover object-top mr-2 last:mr-0 hover:opacity-75 cursor-pointer"
-            alt={`${title} gallery image ${i}`}
-            onClick={() => updateSelectedImage(img)}
-          />
-        ))}
-      </div>
+      {Array.isArray(gallery) && gallery.length > 0 && (
+        <div className="flex items-center mt-2">
+          {gallery.map((img, i) => (
+            <Image
+              key={i}
+              src={urlFor(img).url()}
+              width={112}
+              height={112}
+              className="w-28 h-28 rounded-lg object-cover mr-2 last:mr-0 hover:opacity-75 cursor-pointer"
+              alt={`${title} gallery image ${i}`}
+              onClick={() => setSelectedImg(urlFor(img).url())}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 export const getProductQuery = function (slug: string): string {
-  return `*[_type == 'product' && url.current == ${slug}]{
+  return `*[_type == 'product' && url.current == '${slug}']{
         _id,    
         title,
         'url': url.current,

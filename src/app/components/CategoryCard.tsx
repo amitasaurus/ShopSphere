@@ -15,7 +15,7 @@ export default function CategoryCard({ image_url, title }: Props) {
         alt={title}
         height={448}
         width={320}
-        className="w-[320px] h-[448px] object-cover object-top"
+        className="w-[320px] h-[448px] object-cover"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-secondary/50 hover:from-secondary/75"></div>
       <div
