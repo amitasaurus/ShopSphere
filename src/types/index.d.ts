@@ -29,3 +29,8 @@ export type Product = {
   currency: string;
   category: string;
 };
+export type Combined = {
+  banners: Banner[];
+  categories: Category[];
+  trending: Trending[];
+};

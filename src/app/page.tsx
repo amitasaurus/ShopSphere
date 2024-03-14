@@ -6,15 +6,15 @@ import Link from 'next/link';
 import Slider from './components/Slider';
 import Features from './components/Features';
 import client from '../../client';
-import type { Banner as TBanner, Category, Trending } from '@/types/index';
-import { bannerQuery, categoriesQuery, trendingQuery } from '@/queries';
+import type { Combined } from '@/types/index';
+import { combinedQuery } from '@/queries';
 import { urlFor } from '@/utils/sanity';
 
 export default async function Home() {
-  const banner = await client.fetch<TBanner[]>(bannerQuery);
-  const categories = await client.fetch<Category[]>(categoriesQuery);
-  const trending = await client.fetch<Trending[]>(trendingQuery);
-  const banner_data = banner[0];
+  const { banners, categories, trending } = await client.fetch<Combined>(
+    combinedQuery
+  );
+  const banner_data = banners[0];
   const category_data = categories[0];
   const trending_data = trending[0];
 

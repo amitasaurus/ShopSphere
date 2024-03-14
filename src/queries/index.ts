@@ -9,6 +9,12 @@ export const trendingQuery = `*[_type == "trending"]{
     primary_image,
     price,
     currency,
-    'category': (category -> {title}).title
+    'category': (category -> ).title
   }
+}`;
+
+export const combinedQuery = `{
+  'banners': ${bannerQuery},
+  'categories': ${categoriesQuery},
+  'trending': ${trendingQuery}
 }`;

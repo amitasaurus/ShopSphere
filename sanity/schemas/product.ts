@@ -125,5 +125,13 @@ export const product = defineType({
       title: 'Reviews',
       type: 'number',
     }),
+    defineField({
+      name: 'related',
+      title: 'Related Product',
+      type: 'reference',
+      to: {
+        type: 'product',
+      },
+    }),
   ],
 });
