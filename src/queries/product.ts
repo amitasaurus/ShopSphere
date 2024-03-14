@@ -16,7 +16,8 @@ export const getProductQuery = function (slug: string): string {
         'variants': *[_type == 'product' && references(^._id)]{
             title,
             primary_image,
-            'url': url.current
+            'url': url.current,
+            variant
         }
     }`;
 };

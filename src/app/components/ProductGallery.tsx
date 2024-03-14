@@ -17,13 +17,14 @@ export default function ProductGallery({
   const search = searchParams.get('variant');
   const pathname = usePathname();
   const { replace } = useRouter();
+  const variantsTypes = variants.types;
 
   useEffect(() => {
     if (search) {
-      const selectedVariant = variants.types.find((e) => e.name === search);
+      const selectedVariant = variantsTypes.find((e) => e.name === search);
       if (selectedVariant) setSelectedImg(selectedVariant?.image);
     }
-  }, [search]);
+  }, [search, variantsTypes]);
 
   function clearSearchParams() {
     const params = new URLSearchParams();

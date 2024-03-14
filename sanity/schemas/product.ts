@@ -133,5 +133,11 @@ export const product = defineType({
         type: 'product',
       },
     }),
+    defineField({
+      name: 'variant',
+      title: 'Variant Name',
+      type: 'string',
+      hidden: ({ document }) => !document?.related,
+    }),
   ],
 });

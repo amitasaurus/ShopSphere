@@ -32,7 +32,7 @@ export default function Sizes({ data }: Props) {
 
   useEffect(() => {
     if (!querySize) setSize(defaultSize);
-  }, [querySize]);
+  }, [querySize, defaultSize]);
 
   return (
     <div>

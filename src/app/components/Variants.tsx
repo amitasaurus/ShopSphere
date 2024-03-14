@@ -44,7 +44,7 @@ export default function Variants({ data }: Props) {
 
   useEffect(() => {
     if (!queryVariant) setSelectedType(defaultVariant);
-  }, [queryVariant]);
+  }, [queryVariant, defaultVariant]);
 
   return (
     <div>
