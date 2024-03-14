@@ -16,3 +16,16 @@ export type Category = {
   subtitle: string;
   categories: Categories[];
 };
+export type Trending = {
+  title: string;
+  subtitle: string;
+  products: Product[];
+};
+export type Product = {
+  title: string;
+  url: string;
+  primary_image: SanityImage;
+  price: number;
+  currency: string;
+  category: string;
+};

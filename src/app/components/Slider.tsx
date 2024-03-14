@@ -1,10 +1,12 @@
 'use client';
 import React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { TProduct } from '@/data/trending';
+import type { Product } from '@/types/index';
+import { urlFor } from '@/utils/sanity';
+
 import ProductCard from './ProductCard';
 type Props = {
-  slides: TProduct[];
+  slides: Product[];
 };
 
 export default function Slider({ slides }: Props) {
@@ -21,7 +23,7 @@ export default function Slider({ slides }: Props) {
               title={slide.title}
               currency={slide.currency}
               price={slide.price}
-              image_url={slide.image_url}
+              image_url={urlFor(slide.primary_image).url()}
               url={slide.url}
               category={slide.category}
             />

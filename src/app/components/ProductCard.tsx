@@ -1,5 +1,5 @@
 import React from 'react';
-import { TProduct } from '@/data/trending';
+import type { Product } from '@/types/index';
 import Image from 'next/image';
 import { noto_serif } from '@/utils/fonts';
 import cn from '@/utils/cn';
@@ -7,7 +7,9 @@ import Link from 'next/link';
 import Button, { EVariants, EAlignment } from './Button';
 import { FiShoppingCart, FiHeart } from 'react-icons/fi';
 
-interface CardProps extends TProduct {}
+interface CardProps extends Omit<Product, 'primary_image'> {
+  image_url: string;
+}
 
 export default function ProductCard({
   title,

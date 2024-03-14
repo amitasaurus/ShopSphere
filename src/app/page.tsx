@@ -1,5 +1,4 @@
 import Banner from './components/Banner';
-import { trending_data } from '@/data/trending';
 import CategoryCard from './components/CategoryCard';
 import cn from '@/utils/cn';
 import { noto_serif } from '@/utils/fonts';
@@ -7,15 +6,17 @@ import Link from 'next/link';
 import Slider from './components/Slider';
 import Features from './components/Features';
 import client from '../../client';
-import type { Banner as TBanner, Category } from '@/types/index';
-import { bannerQuery, categoriesQuery } from '@/queries/landing';
+import type { Banner as TBanner, Category, Trending } from '@/types/index';
+import { bannerQuery, categoriesQuery, trendingQuery } from '@/queries';
 import { urlFor } from '@/utils/sanity';
 
 export default async function Home() {
   const banner = await client.fetch<TBanner[]>(bannerQuery);
   const categories = await client.fetch<Category[]>(categoriesQuery);
+  const trending = await client.fetch<Trending[]>(trendingQuery);
   const banner_data = banner[0];
   const category_data = categories[0];
+  const trending_data = trending[0];
 
   return (
     <main className="p-4">
