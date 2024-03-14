@@ -12,10 +12,9 @@ type Props = {
 };
 
 export default function Variants({ data }: Props) {
-  if (!(Array.isArray(data) && data.length > 0)) return null;
+  const searchParams = useSearchParams();
   const title = 'Colors';
   const defaultVariant = data[0];
-  const searchParams = useSearchParams();
   const queryVariant = searchParams.get('variant');
   let queryVariantType;
   if (queryVariant) {
@@ -27,6 +26,12 @@ export default function Variants({ data }: Props) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  useEffect(() => {
+    if (!queryVariant) setSelectedType(defaultVariant);
+  }, [queryVariant, defaultVariant]);
+
+  if (!(Array.isArray(data) && data.length > 0)) return null;
+
   function updateVariantSelection(type: Variant) {
     setSelectedType(type);
     const params = new URLSearchParams(searchParams);
@@ -36,10 +41,6 @@ export default function Variants({ data }: Props) {
     params.append('variant', type.variant);
     replace(`${pathname}?${params.toString()}`);
   }
-
-  useEffect(() => {
-    if (!queryVariant) setSelectedType(defaultVariant);
-  }, [queryVariant, defaultVariant]);
 
   return (
     <div>
